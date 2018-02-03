@@ -1,0 +1,79 @@
+{#hii {{ queries }} {{ account_risk_data }}#}\
+<html>
+<head>
+<style>
+.flex-container {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.flex-container > div {
+  background-color: #f1f1f1;
+  width: 300px;
+  margin: 10px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 20px;
+}
+.flex-body{
+    background-color: coral;
+}
+.container{
+    border:1px solid black
+}
+.side{
+    float: right; background-color: aliceblue; color: coral;margin: 10px
+}
+</style>
+</head>
+<body>
+
+<div class="flex-container">
+  <div>
+     <h1> {{ queries.child_account_count }}<br></h1>
+      CHILD ACCOUNTS
+  </div>
+  <div>
+      <h1>{{ queries.won_count }}<br></h1>
+      ACCOUNTS WON
+  </div>
+  <div>
+      <h1>{{ queries.count_potential }}<br></h1>
+      HIGH POTENTIAL ACCOUNTS
+  </div>
+  <div>
+      <h1>{{ queries.count_pipeline }}<br></h1>
+      HIGH PIPELINE ACCOUNTS
+  </div>
+
+</div>
+
+<p>* All the account references  are for child accounts</p>
+
+{% for account in account_risk_data %}
+<div class = "container">
+<div class="flex-body">
+    <div class="side">High Potential</div>
+    <div class="side">High Pipeline</div>
+    <h4> Account Name : {{ account.account_name }}</h4>
+    <h4> End Customer : {{ account.customer_name }}</h4>
+</div>
+<div>
+Account Risks
+
+    <ul style="margin-left: 50%">
+        {% for risk in account.risk %}
+            <li>{{ risk }}</li><br>
+            <li>{{ risk }}</li><br>
+            {% endfor %}
+    </ul>
+</div>
+</div>
+</div>
+
+
+{% endfor %}
+
+
+</body>
+</html>
